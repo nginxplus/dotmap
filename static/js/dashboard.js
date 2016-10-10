@@ -1,4 +1,8 @@
+
+// 初始化图表组件
 var myChart = echarts.init(document.getElementById("container"));
+
+// 国内各大城市的经纬度
 var geoCoordMap = {
 	"海门" : [121.15, 31.89],
 	"鄂尔多斯" : [109.781327, 39.608266],
@@ -192,30 +196,38 @@ var geoCoordMap = {
 	"香港" : [114.16, 22.28],
 	"大庆" : [125.03, 46.58]
 };
+
+// 图形组件的配置项
 option = {
+    // 地图背景色
 	backgroundColor : 'black',
+    
+    // 页面刷新的过场动画
 	animation : false,
 	animationDuration : 1000,
 	animationEasing : 'cubicInOut',
 	animationDurationUpdate : 1000,
 	animationEasingUpdate : 'cubicInOut',
+    
+    // 标题
 	title : [{
-			text : '【XXXXXXXXXX】监控中心',
+			text : '【XXXXXXXXXX】流量状态',
 			subtext : '',
 			top : '8%',
 			right : '-30%',
-			itemGap : 40,
+			itemGap : 20,
 			textAlign : 'right',
 			textStyle : {
-				fontSize : 55,
+				fontSize : 45,
 				color : '#0ff'
 			},
 			subtextStyle : {
-				fontSize : 30,
+				fontSize : 25,
 				color : '#fff'
 			}
 		}
 	],
+    // 右下角工具箱，暂时用不到
 	toolbox : {
 		show : false,
 		orient : 'vertical',
@@ -249,6 +261,7 @@ option = {
 		},
 		zlevel : 3
 	},
+    // 地图
 	geo : {
 		map : 'china',
 		left : '2%',
@@ -268,11 +281,15 @@ option = {
 		roam : true,
 		itemStyle : {
 			normal : {
+                // 每个省的背景色
 				areaColor : '#1C1C1C',
+                // 省边界色
 				borderColor : '#d9d9d9',
+                // 省边界粗细
 				borderWidth : 1.08
 			},
 			emphasis : {
+                // 鼠标悬浮背景色
 				areaColor : '#363636'
 			}
 		}
@@ -280,6 +297,7 @@ option = {
 	tooltip : {
 		trigger : 'item'
 	},
+    // 右部统计栏
 	grid : {
 		right : '5%',
 		top : '30%',
@@ -331,9 +349,10 @@ option = {
 		},
 		data : []
 	},
+    // 地图上的闪点
 	series : [{
 			name : '',
-			type : 'scatter',
+			type : 'effectScatter',
 			symbol : 'pin',
 			coordinateSystem : 'geo',
 			data : [],
@@ -409,7 +428,11 @@ option = {
 		}
 	]
 };
+
+// 应用配置到插件
 myChart.setOption(option, true);
+
+// 生成当前日期时间  20161010、2016101009、2016-10-10 9:00
 function getDateStr(date) {
 	var year = date.getFullYear();
 	var month = date.getMonth() + 1;
@@ -437,10 +460,12 @@ function getDateStr(date) {
 	data[1] = year + '-' + month + '-' + day + ' ' + h + ':00';
 	return data
 }
+
+// 刷新前十排名
 function initTop10() {
 	var datenum = getDateStr(new Date())[0];
 	console.log(datenum);
-	var dateshownum = 'O2O项目访问量 ' + getDateStr(new Date())[1];
+	var dateshownum = '刷新' + getDateStr(new Date())[1];
 	$.getJSON('http://127.0.0.1:8000/api/' + datenum, function (data) {
 		var categoryData = [];
 		var barData = [];
@@ -494,7 +519,9 @@ function initTop10() {
 		});
 	});
 }
+
+// 10分钟刷新一次
 $(function () {
 	initTop10();
-	setInterval('initTop10()', 60000);
+	setInterval('initTop10()', 600000);
 });
