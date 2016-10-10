@@ -10,3 +10,5 @@ echarts 3
 
 前端通过Ajaxs异步读取接口数据进行渲染。
 
+效果图：
+![promisechains](https://raw.githubusercontent.com/Leon2018/dotmap/master/%E6%95%88%E6%9E%9C%E5%9B%BE.png)
