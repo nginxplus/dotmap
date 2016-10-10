@@ -211,14 +211,14 @@ option = {
     
     // 标题
 	title : [{
-			text : '【XXXXXXXXXX】流量状态',
+			text : '【XXXXXXXXXX】监控中心',
 			subtext : '',
 			top : '8%',
 			right : '-30%',
 			itemGap : 20,
 			textAlign : 'right',
 			textStyle : {
-				fontSize : 45,
+				fontSize : 35,
 				color : '#0ff'
 			},
 			subtextStyle : {
@@ -353,11 +353,11 @@ option = {
 	series : [{
 			name : '',
 			type : 'effectScatter',
-			symbol : 'pin',
+			//symbol : 'pin',
 			coordinateSystem : 'geo',
 			data : [],
 			symbolSize : function (val) {
-				return Math.max(val[2] / 1000, 10);
+				return Math.max(val[2] / 1000, 3);
 			},
 			rippleEffect : {
 				period : 3,
@@ -469,7 +469,7 @@ function initTop10() {
 	$.getJSON('http://127.0.0.1:8000/api/' + datenum, function (data) {
 		var categoryData = [];
 		var barData = [];
-		var maxBar = 10;
+		var maxBar = 5;
 		var convertData = function (data) {
 			var res = [];
 			for (var i = 0; i < data.length; i++) {
