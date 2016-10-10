@@ -7,5 +7,6 @@ echarts 3
 整体架构非常简单，后端采集程序collection.py定期写入数据到data.db。
 
 后端接口：http://127.0.0.1:8000/api/<YYYYmmdd>
+
 前端通过Ajaxs异步读取接口数据进行渲染。
 
