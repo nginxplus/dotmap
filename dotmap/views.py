@@ -1,15 +1,10 @@
 #coding=utf-8
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import Http404, HttpResponse, JsonResponse
+# from django.shortcuts import render, get_object_or_404, redirect
+from django.http import Http404, HttpResponse
 from .models import Pageview
 import json
 
 
-# Create your views here.
-def mainboard(request):
-    return render(request, 'dotmap/index.html', {})
-    
-    
 def api(request, datenumber=None):
 
     if datenumber and len(datenumber) == 8:
@@ -23,10 +18,8 @@ def api(request, datenumber=None):
             dlist.append(tmpdict)
         
         
-        data = json.dumps(dlist,skipkeys=False,ensure_ascii=False)
-        response = HttpResponse(data)
+        response = HttpResponse(json.dumps(dlist,skipkeys=False,ensure_ascii=False))
         response['Content-Type'] = "application/json"
-        response['Access-Control-Allow-Origin'] = "*"
         
         return response
     else:

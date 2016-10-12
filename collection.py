@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #coding=utf-8
 import sys, os, time, re
-from api.iptocity import ipip_api
+from dotmap.api.iptocity import ipip_api
 from collections import Counter
 
 
@@ -67,7 +67,7 @@ for ip in data.keys():
         else:
             finaldata.setdefault(city, int(data[ip])) 
 
-print finaldata
+# print finaldata
 
 # 将结果写入DB
 for city in finaldata.keys():
