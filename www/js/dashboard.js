@@ -439,7 +439,7 @@ function getDateStr(date) {
 function initTop10() {
 	var datenum = getDateStr(new Date())[0];
 	var dateshownum = 'O2O项目访问量 ' + getDateStr(new Date())[1];
-	$.getJSON('http://10.1.1.47/data/' + datenum, function (data) {
+	$.getJSON('http://10.2.3.77/data/' + datenum, function (data) {
 		var categoryData = [];
 		var barData = [];
 		var maxBar = 10;

@@ -19,7 +19,7 @@ def api(request, datenumber=None):
         
         
         response = HttpResponse(json.dumps(dlist,skipkeys=False,ensure_ascii=False))
-        response['Content-Type'] = "application/json"
+        response['Content-Type'] = "application/json;charset=utf-8"
         
         return response
     else:
