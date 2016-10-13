@@ -4,5 +4,5 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^(?P<datenumber>[0-9]+)/$', views.api, name='api'),
+    url(r'^data/(?P<datenumber>[0-9]+)/$', views.api, name='api'),
 ]
