@@ -2,4 +2,3 @@
 *.log
 *.db
 .idea/
-uwsgi.ini
